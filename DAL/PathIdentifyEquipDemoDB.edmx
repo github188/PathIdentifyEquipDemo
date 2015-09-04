@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PathIdentifyEquipDemoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityType Name="T_DataDict">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FValue" Type="int" Nullable="false" />
+          <Property Name="FDesc" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_DeviceStatusLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EquipId" Type="int" Nullable="false" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="StatusDesc" Type="varchar" MaxLength="150" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_PathIdentifyEquip">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentId" Type="int" Nullable="false" />
+          <Property Name="EquipName" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Ip" Type="varchar" MaxLength="50" />
+          <Property Name="Port" Type="int" />
+          <Property Name="ProtocolId" Type="int" Nullable="false" />
+          <Property Name="EquipType" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_ReceiveData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EquipId" Type="int" Nullable="false" />
+          <Property Name="VehPlateNo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="VehPlateColor" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="VehicleSpeed" Type="int" Nullable="false" />
+          <Property Name="ReachTime" Type="datetime" Nullable="false" />
+          <Property Name="VehicleLength" Type="float" />
+          <Property Name="ImageAllPath" Type="varchar" MaxLength="150" />
+          <Property Name="ImageNearPath" Type="varchar" MaxLength="150" />
+          <Property Name="ImagePlateNoPath" Type="varchar" MaxLength="150" />
+          <Property Name="ImageBinPlateNoPath" Type="varchar" MaxLength="150" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="PathIdentifyEquipDemoDBModelStoreContainer">
+          <EntitySet Name="T_DataDict" EntityType="Self.T_DataDict" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_DeviceStatusLog" EntityType="Self.T_DeviceStatusLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_PathIdentifyEquip" EntityType="Self.T_PathIdentifyEquip" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_ReceiveData" EntityType="Self.T_ReceiveData" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PathIdentifyEquipDemoDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityType Name="T_DeviceStatusLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EquipId" Type="Int32" Nullable="false" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <Property Name="StatusDesc" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="T_PathIdentifyEquip">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentId" Type="Int32" Nullable="false" />
+          <Property Name="EquipName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Port" Type="Int32" />
+          <Property Name="ProtocolId" Type="Int32" Nullable="false" />
+          <Property Name="EquipType" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="T_ReceiveData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EquipId" Type="Int32" Nullable="false" />
+          <Property Name="VehPlateNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VehPlateColor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VehicleSpeed" Type="Int32" Nullable="false" />
+          <Property Name="ReachTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="VehicleLength" Type="Double" />
+          <Property Name="ImageAllPath" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ImageNearPath" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ImagePlateNoPath" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ImageBinPlateNoPath" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="PathIdentifyEquipDemoDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="T_DeviceStatusLog" EntityType="Self.T_DeviceStatusLog" />
+          <EntitySet Name="T_PathIdentifyEquip" EntityType="Self.T_PathIdentifyEquip" />
+          <EntitySet Name="T_ReceiveData" EntityType="Self.T_ReceiveData" />
+          <EntitySet Name="T_DataDict" EntityType="PathIdentifyEquipDemoDBModel.T_DataDict" />
+        </EntityContainer>
+        <EntityType Name="T_DataDict">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FValue" Type="Int32" Nullable="false" />
+          <Property Name="FDesc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PathIdentifyEquipDemoDBModelStoreContainer" CdmEntityContainer="PathIdentifyEquipDemoDBEntities">
+          <EntitySetMapping Name="T_DeviceStatusLog">
+            <EntityTypeMapping TypeName="PathIdentifyEquipDemoDBModel.T_DeviceStatusLog">
+              <MappingFragment StoreEntitySet="T_DeviceStatusLog">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EquipId" ColumnName="EquipId" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="StatusDesc" ColumnName="StatusDesc" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_PathIdentifyEquip">
+            <EntityTypeMapping TypeName="PathIdentifyEquipDemoDBModel.T_PathIdentifyEquip">
+              <MappingFragment StoreEntitySet="T_PathIdentifyEquip">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="EquipName" ColumnName="EquipName" />
+                <ScalarProperty Name="Ip" ColumnName="Ip" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="ProtocolId" ColumnName="ProtocolId" />
+                <ScalarProperty Name="EquipType" ColumnName="EquipType" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_ReceiveData">
+            <EntityTypeMapping TypeName="PathIdentifyEquipDemoDBModel.T_ReceiveData">
+              <MappingFragment StoreEntitySet="T_ReceiveData">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EquipId" ColumnName="EquipId" />
+                <ScalarProperty Name="VehPlateNo" ColumnName="VehPlateNo" />
+                <ScalarProperty Name="VehPlateColor" ColumnName="VehPlateColor" />
+                <ScalarProperty Name="VehicleSpeed" ColumnName="VehicleSpeed" />
+                <ScalarProperty Name="ReachTime" ColumnName="ReachTime" />
+                <ScalarProperty Name="VehicleLength" ColumnName="VehicleLength" />
+                <ScalarProperty Name="ImageAllPath" ColumnName="ImageAllPath" />
+                <ScalarProperty Name="ImageNearPath" ColumnName="ImageNearPath" />
+                <ScalarProperty Name="ImagePlateNoPath" ColumnName="ImagePlateNoPath" />
+                <ScalarProperty Name="ImageBinPlateNoPath" ColumnName="ImageBinPlateNoPath" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_DataDict">
+            <EntityTypeMapping TypeName="PathIdentifyEquipDemoDBModel.T_DataDict">
+              <MappingFragment StoreEntitySet="T_DataDict">
+                <ScalarProperty Name="FDesc" ColumnName="FDesc" />
+                <ScalarProperty Name="FValue" ColumnName="FValue" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
