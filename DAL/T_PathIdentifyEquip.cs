@@ -22,5 +22,8 @@ namespace DAL
         public int ProtocolId { get; set; }
         public int EquipType { get; set; }
         public System.DateTime CreateTime { get; set; }
+        public string Mile { get; set; }
+        public string LoginUserName { get; set; }
+        public string LoginPwd { get; set; }
     }
 }

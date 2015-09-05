@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConstValue.cs" />
     <Compile Include="Dicts\VehiclePlateColorDict.cs" />
     <Compile Include="Enum\DriverType.cs" />
     <Compile Include="Enum\EquipType.cs" />

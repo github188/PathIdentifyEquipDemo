@@ -25,5 +25,16 @@ namespace DAL
             PathIdEquips = DAL_Equip.GetAllPathIdEquip();
             DataDictCache = DAL_DataDict.GetAllDataDict();
         }
+
+        public static void InitAllPathIdEquip()
+        {
+            PathIdEquips = DAL_Equip.GetAllPathIdEquip();
+        }
+
+        public static void RemoveEquip(T_PathIdentifyEquip equip)
+        {
+            DAL_Equip.DelEquip(equip);
+            PathIdEquips.Remove(equip);
+        }
     }
 }

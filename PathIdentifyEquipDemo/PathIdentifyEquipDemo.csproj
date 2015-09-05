@@ -53,6 +53,12 @@
     <Compile Include="Dialogs\AddEquipForm.Designer.cs">
       <DependentUpon>AddEquipForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\ImagePreviewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ImagePreviewForm.Designer.cs">
+      <DependentUpon>ImagePreviewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,6 +67,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Dialogs\AddEquipForm.resx">
+      <DependentUpon>AddEquipForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ImagePreviewForm.resx">
+      <DependentUpon>ImagePreviewForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -99,6 +111,16 @@
       <Project>{35249b3c-2f42-4e28-a5c3-95ae36977204}</Project>
       <Name>DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataDict\DataDict.csproj">
+      <Project>{7541b0e8-34c0-4e55-9d34-da2eabd778af}</Project>
+      <Name>DataDict</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NonImage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NonImage_Small.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

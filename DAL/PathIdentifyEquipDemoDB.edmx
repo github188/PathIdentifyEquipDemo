@@ -22,7 +22,7 @@
           <Property Name="EquipId" Type="int" Nullable="false" />
           <Property Name="StatusId" Type="int" Nullable="false" />
           <Property Name="StatusDesc" Type="varchar" MaxLength="150" />
-          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="T_PathIdentifyEquip">
           <Key>
@@ -33,9 +33,12 @@
           <Property Name="EquipName" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="Ip" Type="varchar" MaxLength="50" />
           <Property Name="Port" Type="int" />
+          <Property Name="LoginUserName" Type="varchar" MaxLength="50" />
+          <Property Name="LoginPwd" Type="varchar" MaxLength="18" />
           <Property Name="ProtocolId" Type="int" Nullable="false" />
           <Property Name="EquipType" Type="int" Nullable="false" />
-          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="Mile" Type="varchar" MaxLength="80" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="T_ReceiveData">
           <Key>
@@ -52,7 +55,7 @@
           <Property Name="ImageNearPath" Type="varchar" MaxLength="150" />
           <Property Name="ImagePlateNoPath" Type="varchar" MaxLength="150" />
           <Property Name="ImageBinPlateNoPath" Type="varchar" MaxLength="150" />
-          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityContainer Name="PathIdentifyEquipDemoDBModelStoreContainer">
           <EntitySet Name="T_DataDict" EntityType="Self.T_DataDict" Schema="dbo" store:Type="Tables" />
@@ -72,7 +75,7 @@
           <Property Name="EquipId" Type="Int32" Nullable="false" />
           <Property Name="StatusId" Type="Int32" Nullable="false" />
           <Property Name="StatusDesc" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="T_PathIdentifyEquip">
           <Key>
@@ -85,7 +88,10 @@
           <Property Name="Port" Type="Int32" />
           <Property Name="ProtocolId" Type="Int32" Nullable="false" />
           <Property Name="EquipType" Type="Int32" Nullable="false" />
-          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mile" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="LoginUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LoginPwd" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="T_ReceiveData">
           <Key>
@@ -102,7 +108,7 @@
           <Property Name="ImageNearPath" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="ImagePlateNoPath" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="ImageBinPlateNoPath" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityContainer Name="PathIdentifyEquipDemoDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="T_DeviceStatusLog" EntityType="Self.T_DeviceStatusLog" />
@@ -139,6 +145,9 @@
           <EntitySetMapping Name="T_PathIdentifyEquip">
             <EntityTypeMapping TypeName="PathIdentifyEquipDemoDBModel.T_PathIdentifyEquip">
               <MappingFragment StoreEntitySet="T_PathIdentifyEquip">
+                <ScalarProperty Name="LoginPwd" ColumnName="LoginPwd" />
+                <ScalarProperty Name="LoginUserName" ColumnName="LoginUserName" />
+                <ScalarProperty Name="Mile" ColumnName="Mile" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ParentId" ColumnName="ParentId" />
                 <ScalarProperty Name="EquipName" ColumnName="EquipName" />
