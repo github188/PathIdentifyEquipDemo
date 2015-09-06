@@ -21,5 +21,13 @@ namespace DAL
                 db.SaveChanges();
             }
         }
+
+        public static T_ReceiveData[] GetAllDatas()
+        {
+            using (PathIdentifyEquipDemoDBEntities db = new PathIdentifyEquipDemoDBEntities())
+            {
+                return db.T_ReceiveData.ToArray();
+            }
+        }
     }
 }

@@ -144,6 +144,7 @@ namespace PathIdentifyDrivers
             data.VehPlateColor = arg.VehiclePlateColor;
             data.VehPlateNo = arg.VehiclePlateNo;
             DAL_ReceiveData.SaveReceiveData(data);
+            arg.DbData = data;
             if (VehicleInfoReceiveNotifyHandler != null)
             {
                 VehicleInfoReceiveNotifyHandler.Invoke(sender, arg);

@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -59,6 +60,12 @@
     <Compile Include="Dialogs\ImagePreviewForm.Designer.cs">
       <DependentUpon>ImagePreviewForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\SettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SettingForm.Designer.cs">
+      <DependentUpon>SettingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +79,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ImagePreviewForm.resx">
       <DependentUpon>ImagePreviewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SettingForm.resx">
+      <DependentUpon>SettingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -115,12 +125,22 @@
       <Project>{7541b0e8-34c0-4e55-9d34-da2eabd778af}</Project>
       <Name>DataDict</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PathIdentifyDrivers\PathIdentifyDrivers.csproj">
+      <Project>{c12c1abf-7bbc-4557-b1f7-a62eb671b2f7}</Project>
+      <Name>PathIdentifyDrivers</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\NonImage.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\NonImage_Small.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cross.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

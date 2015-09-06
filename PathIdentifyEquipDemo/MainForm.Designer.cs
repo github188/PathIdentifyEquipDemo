@@ -35,6 +35,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.MainTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.MainControlPanel = new System.Windows.Forms.Panel();
+            this.btnSetting = new System.Windows.Forms.Button();
             this.btnInitDriver = new System.Windows.Forms.Button();
             this.EquipTreeView = new System.Windows.Forms.TreeView();
             this.EquipTreeContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -44,17 +45,23 @@
             this.AllCollapseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DataReceiveLogGrid = new System.Windows.Forms.DataGridView();
             this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colImageFullPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colImageNear = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colVehiclePlate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBinVehiclePlate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEquipName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colVehPlateNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colVehPlateColor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colReachTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colVehSpeed = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtLog = new System.Windows.Forms.TextBox();
             this.ImageTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.picImageAll = new System.Windows.Forms.PictureBox();
             this.picImageNear = new System.Windows.Forms.PictureBox();
             this.picVehiclePlate = new System.Windows.Forms.PictureBox();
             this.picBinVehiclePlate = new System.Windows.Forms.PictureBox();
+            this.TreeViewImageList = new System.Windows.Forms.ImageList(this.components);
+            this.btnReadHistoryData = new System.Windows.Forms.Button();
             this.MainTableLayoutPanel.SuspendLayout();
             this.MainControlPanel.SuspendLayout();
             this.EquipTreeContextMenuStrip.SuspendLayout();
@@ -75,7 +82,7 @@
             this.MainTableLayoutPanel.Controls.Add(this.MainControlPanel, 0, 0);
             this.MainTableLayoutPanel.Controls.Add(this.EquipTreeView, 0, 1);
             this.MainTableLayoutPanel.Controls.Add(this.DataReceiveLogGrid, 1, 1);
-            this.MainTableLayoutPanel.Controls.Add(this.textBox1, 0, 2);
+            this.MainTableLayoutPanel.Controls.Add(this.txtLog, 0, 2);
             this.MainTableLayoutPanel.Controls.Add(this.ImageTableLayoutPanel, 2, 1);
             this.MainTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
@@ -90,12 +97,24 @@
             // MainControlPanel
             // 
             this.MainTableLayoutPanel.SetColumnSpan(this.MainControlPanel, 3);
+            this.MainControlPanel.Controls.Add(this.btnReadHistoryData);
+            this.MainControlPanel.Controls.Add(this.btnSetting);
             this.MainControlPanel.Controls.Add(this.btnInitDriver);
             this.MainControlPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainControlPanel.Location = new System.Drawing.Point(3, 3);
             this.MainControlPanel.Name = "MainControlPanel";
             this.MainControlPanel.Size = new System.Drawing.Size(886, 49);
             this.MainControlPanel.TabIndex = 0;
+            // 
+            // btnSetting
+            // 
+            this.btnSetting.Location = new System.Drawing.Point(272, 9);
+            this.btnSetting.Name = "btnSetting";
+            this.btnSetting.Size = new System.Drawing.Size(129, 36);
+            this.btnSetting.TabIndex = 1;
+            this.btnSetting.Text = "全局配置";
+            this.btnSetting.UseVisualStyleBackColor = true;
+            this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click);
             // 
             // btnInitDriver
             // 
@@ -105,14 +124,18 @@
             this.btnInitDriver.TabIndex = 0;
             this.btnInitDriver.Text = "初始化";
             this.btnInitDriver.UseVisualStyleBackColor = true;
+            this.btnInitDriver.Click += new System.EventHandler(this.btnInitDriver_Click);
             // 
             // EquipTreeView
             // 
             this.EquipTreeView.ContextMenuStrip = this.EquipTreeContextMenuStrip;
             this.EquipTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EquipTreeView.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.EquipTreeView.ImageIndex = 0;
+            this.EquipTreeView.ImageList = this.TreeViewImageList;
             this.EquipTreeView.Location = new System.Drawing.Point(3, 58);
             this.EquipTreeView.Name = "EquipTreeView";
+            this.EquipTreeView.SelectedImageIndex = 0;
             this.EquipTreeView.Size = new System.Drawing.Size(244, 280);
             this.EquipTreeView.TabIndex = 1;
             // 
@@ -167,6 +190,10 @@
             this.DataReceiveLogGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataReceiveLogGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colId,
+            this.colImageFullPath,
+            this.colImageNear,
+            this.colVehiclePlate,
+            this.colBinVehiclePlate,
             this.colEquipName,
             this.colVehPlateNo,
             this.colVehPlateColor,
@@ -190,6 +217,7 @@
             this.DataReceiveLogGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataReceiveLogGrid.Size = new System.Drawing.Size(236, 280);
             this.DataReceiveLogGrid.TabIndex = 2;
+            this.DataReceiveLogGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataReceiveLogGrid_CellClick);
             // 
             // colId
             // 
@@ -197,6 +225,34 @@
             this.colId.Name = "colId";
             this.colId.ReadOnly = true;
             this.colId.Visible = false;
+            // 
+            // colImageFullPath
+            // 
+            this.colImageFullPath.HeaderText = "全景图";
+            this.colImageFullPath.Name = "colImageFullPath";
+            this.colImageFullPath.ReadOnly = true;
+            this.colImageFullPath.Visible = false;
+            // 
+            // colImageNear
+            // 
+            this.colImageNear.HeaderText = "近景图";
+            this.colImageNear.Name = "colImageNear";
+            this.colImageNear.ReadOnly = true;
+            this.colImageNear.Visible = false;
+            // 
+            // colVehiclePlate
+            // 
+            this.colVehiclePlate.HeaderText = "车牌图";
+            this.colVehiclePlate.Name = "colVehiclePlate";
+            this.colVehiclePlate.ReadOnly = true;
+            this.colVehiclePlate.Visible = false;
+            // 
+            // colBinVehiclePlate
+            // 
+            this.colBinVehiclePlate.HeaderText = "二值化图";
+            this.colBinVehiclePlate.Name = "colBinVehiclePlate";
+            this.colBinVehiclePlate.ReadOnly = true;
+            this.colBinVehiclePlate.Visible = false;
             // 
             // colEquipName
             // 
@@ -228,17 +284,18 @@
             this.colVehSpeed.Name = "colVehSpeed";
             this.colVehSpeed.ReadOnly = true;
             // 
-            // textBox1
+            // txtLog
             // 
-            this.MainTableLayoutPanel.SetColumnSpan(this.textBox1, 3);
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(3, 344);
-            this.textBox1.MaxLength = 327679999;
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(886, 94);
-            this.textBox1.TabIndex = 3;
+            this.txtLog.AcceptsReturn = true;
+            this.MainTableLayoutPanel.SetColumnSpan(this.txtLog, 3);
+            this.txtLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtLog.Location = new System.Drawing.Point(3, 344);
+            this.txtLog.MaxLength = 327679999;
+            this.txtLog.Multiline = true;
+            this.txtLog.Name = "txtLog";
+            this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtLog.Size = new System.Drawing.Size(886, 94);
+            this.txtLog.TabIndex = 3;
             // 
             // ImageTableLayoutPanel
             // 
@@ -309,6 +366,23 @@
             this.picBinVehiclePlate.TabStop = false;
             this.picBinVehiclePlate.DoubleClick += new System.EventHandler(this.picImage_DoubleClick);
             // 
+            // TreeViewImageList
+            // 
+            this.TreeViewImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("TreeViewImageList.ImageStream")));
+            this.TreeViewImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.TreeViewImageList.Images.SetKeyName(0, "Check.png");
+            this.TreeViewImageList.Images.SetKeyName(1, "Cross.png");
+            // 
+            // btnReadHistoryData
+            // 
+            this.btnReadHistoryData.Location = new System.Drawing.Point(133, 10);
+            this.btnReadHistoryData.Name = "btnReadHistoryData";
+            this.btnReadHistoryData.Size = new System.Drawing.Size(133, 35);
+            this.btnReadHistoryData.TabIndex = 2;
+            this.btnReadHistoryData.Text = "读取历史数据";
+            this.btnReadHistoryData.UseVisualStyleBackColor = true;
+            this.btnReadHistoryData.Click += new System.EventHandler(this.btnReadHistoryData_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -346,18 +420,25 @@
         private System.Windows.Forms.ToolStripMenuItem AllExpendToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AllCollapseToolStripMenuItem;
         private System.Windows.Forms.Button btnInitDriver;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colEquipName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colVehPlateNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colVehPlateColor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colReachTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colVehSpeed;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtLog;
         private System.Windows.Forms.TableLayoutPanel ImageTableLayoutPanel;
         private System.Windows.Forms.PictureBox picImageAll;
         private System.Windows.Forms.PictureBox picImageNear;
         private System.Windows.Forms.PictureBox picVehiclePlate;
         private System.Windows.Forms.PictureBox picBinVehiclePlate;
+        private System.Windows.Forms.Button btnSetting;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colImageFullPath;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colImageNear;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colVehiclePlate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colBinVehiclePlate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEquipName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colVehPlateNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colVehPlateColor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colReachTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colVehSpeed;
+        private System.Windows.Forms.ImageList TreeViewImageList;
+        private System.Windows.Forms.Button btnReadHistoryData;
 
     }
 }

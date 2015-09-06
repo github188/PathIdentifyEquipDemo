@@ -71,5 +71,8 @@ namespace DataDict.Models
         /// </summary>
         public float VehicleLength
         { get; set; }
+
+        public T_ReceiveData DbData
+        { get; set; }
     }
 }
