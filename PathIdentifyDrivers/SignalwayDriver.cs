@@ -104,6 +104,16 @@ namespace PathIdentifyDrivers
             return innerDriver.StopPathIdentificationDriver();
         }
 
+        public bool Connect(int ParentEquipId)
+        {
+            return innerDriver.Connect(ParentEquipId);
+        }
+
+        public bool Disconnect(int ParentEquipId)
+        {
+            return innerDriver.DisConnect(ParentEquipId);
+        }
+
         public EventHandler<DeviceStatus> DeviceStatusNotifyHandler
         {
             get;

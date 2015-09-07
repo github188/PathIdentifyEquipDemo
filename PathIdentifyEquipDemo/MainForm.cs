@@ -44,8 +44,8 @@ namespace PathIdentifyEquipDemo
                 foreach (T_PathIdentifyEquip ce in childEquips)
                 {
                     TreeNode node = new TreeNode(ce.EquipName);
-                    CurrentRootNode.ImageIndex = 0;
-                    CurrentRootNode.Tag = ce;
+                    node.ImageIndex = 0;
+                    node.Tag = ce;
                     CurrentRootNode.Nodes.Add(node);
                     TreeNodeDict.Add(ce.Id, node);
                 }
@@ -65,6 +65,18 @@ namespace PathIdentifyEquipDemo
                         if (form.ShowDialog() == DialogResult.OK)
                         {
                             InitEquipTree();
+                        }
+                    } break;
+                case "ModifyEquipToolStripMenuItem":
+                    {
+                        if (EquipTreeView.SelectedNode != null && EquipTreeView.SelectedNode.Tag != null)
+                        {
+                            T_PathIdentifyEquip equip = (T_PathIdentifyEquip)EquipTreeView.SelectedNode.Tag;
+                            AddEquipForm form = new AddEquipForm(equip);
+                            if (form.ShowDialog() == DialogResult.OK)
+                            {
+                                InitEquipTree();
+                            }
                         }
                     } break;
                 case "DelEquipToolStripMenuItem":
@@ -133,10 +145,32 @@ namespace PathIdentifyEquipDemo
                 {
                     btnInitDriver.Text = "已启动";
                     btnInitDriver.Enabled = false;
+                    AppendText("初始化驱动完成，开始创建连接...");
+                    T_PathIdentifyEquip[] parentEquips = Cache.PathIdEquips.Where(it => it.ParentId == -1).ToArray();
+                    foreach (T_PathIdentifyEquip equip in parentEquips)
+                    {
+                        try
+                        {
+                            bool connRel = DriverWrapper.Connect(equip.Id);
+                            if (connRel)
+                            {
+                                AppendText(string.Format("{0}设备连接成功。", equip.EquipName));
+                            }
+                            else
+                            {
+                                AppendText(string.Format("{0}设备连接失败。", equip.EquipName));
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            AppendText(string.Format("{0}设备连接连接时发生异常：{1}", equip.EquipName, ex.Message));
+                        }
+                    }
                 }
                 else
                 {
                     MessageBox.Show("初始化驱动发生异常！");
+                    AppendText("初始化驱动发生异常！");
                 }
             }
             catch (Exception ex)
@@ -293,6 +327,20 @@ namespace PathIdentifyEquipDemo
             });
             t.IsBackground = true;
             t.Start();
+        }
+
+        private void EquipTreeContextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+            if (EquipTreeView.SelectedNode == null || EquipTreeView.SelectedNode.Tag == null)
+            {
+                ModifyEquipToolStripMenuItem.Visible = false;
+                DelEquipToolStripMenuItem.Visible = false;
+            }
+            else
+            {
+                ModifyEquipToolStripMenuItem.Visible = true;
+                DelEquipToolStripMenuItem.Visible = true;
+            }
         }
     }
 }

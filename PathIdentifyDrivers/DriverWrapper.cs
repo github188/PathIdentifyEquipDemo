@@ -66,12 +66,45 @@ namespace PathIdentifyDrivers
                             throw new Exception("未定义的驱动类型，ProtocolId=" + pid.ToString());
                         }
                 }
-                driver.DeviceStatusNotifyHandler = OnDeviceStatusChanged;
-                rel = driver.InitDriver(currentList);
-                DriverDict.Add(pid, driver);
+                if (driver == null)
+                {
+                    throw new Exception("没有驱动程序被初始化");
+                }
+                else
+                {
+                    driver.DeviceStatusNotifyHandler = OnDeviceStatusChanged;
+                    rel = driver.InitDriver(currentList);
+                    DriverDict.Add(pid, driver);
+                }
             }
 
             return rel;
+        }
+
+        public static bool Connect(int ParentEquipId)
+        {
+            int protocolId = Cache.PathIdEquips.Where(it => it.Id == ParentEquipId).Select(it => it.ProtocolId).FirstOrDefault();
+            if (DriverDict.Keys.Contains(protocolId))
+            {
+                return DriverDict[protocolId].Connect(ParentEquipId);
+            }
+            else
+            {
+                throw new Exception("执行Wrapper中Connect方法时发现驱动程序未被正常初始化，ParentEquipId：" + ParentEquipId.ToString());
+            }
+        }
+
+        public static bool Disconnect(int ParentEquipId)
+        {
+            int protocolId = Cache.PathIdEquips.Where(it => it.Id == ParentEquipId).Select(it => it.ProtocolId).FirstOrDefault();
+            if (DriverDict.Keys.Contains(protocolId))
+            {
+                return DriverDict[protocolId].Disconnect(ParentEquipId);
+            }
+            else
+            {
+                throw new Exception("执行Wrapper中Disconnect方法时发现驱动程序未被正常初始化，ParentEquipId：" + ParentEquipId.ToString());
+            }
         }
 
         #region 事件回调处理

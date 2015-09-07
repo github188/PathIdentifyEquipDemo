@@ -29,6 +29,20 @@ namespace PathIdentifyDrivers
         bool InitDriver(List<T_PathIdentifyEquip> Equips);
 
         /// <summary>
+        /// 连接设备，按设备组连接
+        /// </summary>
+        /// <param name="ParentEquipId"></param>
+        /// <returns></returns>
+        bool Connect(int ParentEquipId);
+
+        /// <summary>
+        /// 断开设备连接，按设备组断开
+        /// </summary>
+        /// <param name="ParentEquipId"></param>
+        /// <returns></returns>
+        bool Disconnect(int ParentEquipId);
+
+        /// <summary>
         /// 设备校时
         /// </summary>
         /// <param name="equipId"></param>
