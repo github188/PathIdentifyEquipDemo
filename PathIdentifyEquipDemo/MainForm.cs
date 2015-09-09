@@ -38,7 +38,14 @@ namespace PathIdentifyEquipDemo
                 TreeNode CurrentRootNode = new TreeNode(equip.EquipName);
                 CurrentRootNode.ImageIndex = 0;
                 CurrentRootNode.Tag = equip;
-                TreeNodeDict.Add(equip.Id, CurrentRootNode);
+                if (TreeNodeDict.Keys.Contains(equip.Id))
+                {
+                    TreeNodeDict[equip.Id] = CurrentRootNode;
+                }
+                else
+                {
+                    TreeNodeDict.Add(equip.Id, CurrentRootNode);
+                }
                 EquipTreeView.Nodes.Add(CurrentRootNode);
                 T_PathIdentifyEquip[] childEquips = Cache.PathIdEquips.Where(it => it.ParentId == equip.Id).ToArray();
                 foreach (T_PathIdentifyEquip ce in childEquips)
@@ -46,8 +53,16 @@ namespace PathIdentifyEquipDemo
                     TreeNode node = new TreeNode(ce.EquipName);
                     node.ImageIndex = 0;
                     node.Tag = ce;
+
                     CurrentRootNode.Nodes.Add(node);
-                    TreeNodeDict.Add(ce.Id, node);
+                    if (TreeNodeDict.Keys.Contains(ce.Id))
+                    {
+                        TreeNodeDict[ce.Id] = node;
+                    }
+                    else
+                    {
+                        TreeNodeDict.Add(ce.Id, node);
+                    }
                 }
             }
             EquipTreeView.ExpandAll();
@@ -155,10 +170,18 @@ namespace PathIdentifyEquipDemo
                             if (connRel)
                             {
                                 AppendText(string.Format("{0}设备连接成功。", equip.EquipName));
+                                if (TreeNodeDict.Keys.Contains(equip.Id))
+                                {
+                                    TreeNodeDict[equip.Id].ImageIndex = 0;
+                                }
                             }
                             else
                             {
                                 AppendText(string.Format("{0}设备连接失败。", equip.EquipName));
+                                if (TreeNodeDict.Keys.Contains(equip.Id))
+                                {
+                                    TreeNodeDict[equip.Id].ImageIndex = 1;
+                                }
                             }
                         }
                         catch (Exception ex)
