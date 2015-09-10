@@ -73,6 +73,7 @@ namespace PathIdentifyDrivers
                 else
                 {
                     driver.DeviceStatusNotifyHandler = OnDeviceStatusChanged;
+                    driver.VehicleInfoReceiveHandler = OnVehicleInfoNotify;
                     rel = driver.InitDriver(currentList);
                     DriverDict.Add(pid, driver);
                 }
