@@ -43,6 +43,13 @@ namespace PathIdentifyDrivers
         bool Disconnect(int ParentEquipId);
 
         /// <summary>
+        /// 获取当前设备连接状态
+        /// </summary>
+        /// <param name="EquipID"></param>
+        /// <returns></returns>
+        bool GetConnectStatus(int EquipID);
+
+        /// <summary>
         /// 设备校时
         /// </summary>
         /// <param name="equipId"></param>

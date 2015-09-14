@@ -114,6 +114,11 @@ namespace PathIdentifyDrivers
             return innerDriver.DisConnect(ParentEquipId);
         }
 
+        public bool GetConnectStatus(int EquipID)
+        {
+            return innerDriver.GetConnectStatus(EquipID);
+        }
+
         public EventHandler<DeviceStatus> DeviceStatusNotifyHandler
         {
             get;

@@ -84,7 +84,7 @@ namespace PathIdentifyDrivers
 
         public static bool Connect(int ParentEquipId)
         {
-            int protocolId = Cache.PathIdEquips.Where(it => it.Id == ParentEquipId).Select(it => it.ProtocolId).FirstOrDefault();
+            int protocolId = Cache.PathIdEquips.Where(it => it.ParentId == ParentEquipId).Select(it => it.ProtocolId).FirstOrDefault();
             if (DriverDict.Keys.Contains(protocolId))
             {
                 return DriverDict[protocolId].Connect(ParentEquipId);
@@ -197,6 +197,19 @@ namespace PathIdentifyDrivers
             else
             {
                 throw new Exception(string.Format("校时时未能发现正确的驱动类型。EquipId={0},ProtocolId={1}", equipId, protocolId));
+            }
+        }
+
+        public static bool GetConnectStatus(int equipId)
+        {
+            int protocolId = Cache.PathIdEquips.Where(it => it.Id == equipId).Select(it => it.ProtocolId).FirstOrDefault();
+            if (DriverDict.Keys.Contains(protocolId))
+            {
+                return DriverDict[protocolId].SetEquipTime(equipId, DateTime.Now);
+            }
+            else
+            {
+                throw new Exception(string.Format("获取设备状态时未能发现正确的驱动类型。EquipId={0},ProtocolId={1}", equipId, protocolId));
             }
         }
     }

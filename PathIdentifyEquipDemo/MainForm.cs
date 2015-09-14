@@ -166,7 +166,8 @@ namespace PathIdentifyEquipDemo
                     {
                         try
                         {
-                            bool connRel = DriverWrapper.Connect(equip.Id);
+                            DriverWrapper.Connect(equip.ParentId);
+                            bool connRel = DriverWrapper.GetConnectStatus(equip.Id);
                             if (connRel)
                             {
                                 AppendText(string.Format("{0}设备连接成功。", equip.EquipName));
@@ -232,18 +233,21 @@ namespace PathIdentifyEquipDemo
         {
             string format = string.Format("【车辆通过】设备：{0} 接收到数据，车牌：{1}  通过时间：{2}",
                 args.Device.EquipName, args.VehiclePlateNo, args.ReachTime.ToString());
-            int rowIndex = DataReceiveLogGrid.Rows.Add();
-            DataGridViewRow row = DataReceiveLogGrid.Rows[rowIndex];
-            row.Cells["colId"].Value = args.Device.Id;
-            row.Cells["colImageFullPath"].Value = args.DbData.ImageAllPath;
-            row.Cells["colImageNear"].Value = args.DbData.ImageNearPath;
-            row.Cells["colVehiclePlate"].Value = args.DbData.ImagePlateNoPath;
-            row.Cells["colBinVehiclePlate"].Value = args.DbData.ImageBinPlateNoPath;
-            row.Cells["colEquipName"].Value = args.Device.EquipName;
-            row.Cells["colVehPlateNo"].Value = args.VehiclePlateNo;
-            row.Cells["colVehPlateColor"].Value = args.VehiclePlateColor;
-            row.Cells["colReachTime"].Value = args.ReachTime.ToString();
-            row.Cells["colVehSpeed"].Value = args.VehicleSpeed;
+            this.Invoke((MethodInvoker)delegate
+            {
+                int rowIndex = DataReceiveLogGrid.Rows.Add();
+                DataGridViewRow row = DataReceiveLogGrid.Rows[rowIndex];
+                row.Cells["colId"].Value = args.Device.Id;
+                row.Cells["colImageFullPath"].Value = args.DbData.ImageAllPath;
+                row.Cells["colImageNear"].Value = args.DbData.ImageNearPath;
+                row.Cells["colVehiclePlate"].Value = args.DbData.ImagePlateNoPath;
+                row.Cells["colBinVehiclePlate"].Value = args.DbData.ImageBinPlateNoPath;
+                row.Cells["colEquipName"].Value = args.Device.EquipName;
+                row.Cells["colVehPlateNo"].Value = args.VehiclePlateNo;
+                row.Cells["colVehPlateColor"].Value = args.VehiclePlateColor;
+                row.Cells["colReachTime"].Value = args.ReachTime.ToString();
+                row.Cells["colVehSpeed"].Value = args.VehicleSpeed;
+            });
         }
 
         #endregion 驱动事件回调
@@ -292,7 +296,7 @@ namespace PathIdentifyEquipDemo
                 }
                 else
                 {
-                    picImageAll.Image = Properties.Resources.NonImage;
+                    picImageNear.Image = Properties.Resources.NonImage;
                 }
 
                 if (DataReceiveLogGrid.Rows[e.RowIndex].Cells["colVehiclePlate"].Value != null &&
@@ -302,7 +306,7 @@ namespace PathIdentifyEquipDemo
                 }
                 else
                 {
-                    picImageAll.Image = Properties.Resources.NonImage_Small;
+                    picVehiclePlate.Image = Properties.Resources.NonImage_Small;
                 }
 
                 if (DataReceiveLogGrid.Rows[e.RowIndex].Cells["colBinVehiclePlate"].Value != null &&
@@ -312,7 +316,7 @@ namespace PathIdentifyEquipDemo
                 }
                 else
                 {
-                    picImageAll.Image = Properties.Resources.NonImage_Small;
+                    picBinVehiclePlate.Image = Properties.Resources.NonImage_Small;
                 }
             }
         }
