@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MainTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.MainControlPanel = new System.Windows.Forms.Panel();
             this.btnReadHistoryData = new System.Windows.Forms.Button();
@@ -41,7 +41,9 @@
             this.EquipTreeView = new System.Windows.Forms.TreeView();
             this.EquipTreeContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.AddEquipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ModifyEquipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DelEquipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ProofTimeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AllExpendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AllCollapseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TreeViewImageList = new System.Windows.Forms.ImageList(this.components);
@@ -62,7 +64,6 @@
             this.picImageNear = new System.Windows.Forms.PictureBox();
             this.picVehiclePlate = new System.Windows.Forms.PictureBox();
             this.picBinVehiclePlate = new System.Windows.Forms.PictureBox();
-            this.ModifyEquipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainTableLayoutPanel.SuspendLayout();
             this.MainControlPanel.SuspendLayout();
             this.EquipTreeContextMenuStrip.SuspendLayout();
@@ -119,7 +120,7 @@
             // 
             // btnSetting
             // 
-            this.btnSetting.Location = new System.Drawing.Point(272, 9);
+            this.btnSetting.Location = new System.Drawing.Point(275, 9);
             this.btnSetting.Name = "btnSetting";
             this.btnSetting.Size = new System.Drawing.Size(129, 36);
             this.btnSetting.TabIndex = 1;
@@ -156,35 +157,48 @@
             this.AddEquipToolStripMenuItem,
             this.ModifyEquipToolStripMenuItem,
             this.DelEquipToolStripMenuItem,
+            this.ProofTimeToolStripMenuItem,
             this.AllExpendToolStripMenuItem,
             this.AllCollapseToolStripMenuItem});
             this.EquipTreeContextMenuStrip.Name = "EquipTreeContextMenuStrip";
-            this.EquipTreeContextMenuStrip.Size = new System.Drawing.Size(153, 136);
+            this.EquipTreeContextMenuStrip.Size = new System.Drawing.Size(125, 136);
             this.EquipTreeContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.EquipTreeContextMenuStrip_Opening);
             this.EquipTreeContextMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.EquipTreeContextMenuStrip_ItemClicked);
             // 
             // AddEquipToolStripMenuItem
             // 
             this.AddEquipToolStripMenuItem.Name = "AddEquipToolStripMenuItem";
-            this.AddEquipToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.AddEquipToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.AddEquipToolStripMenuItem.Text = "添加设备";
+            // 
+            // ModifyEquipToolStripMenuItem
+            // 
+            this.ModifyEquipToolStripMenuItem.Name = "ModifyEquipToolStripMenuItem";
+            this.ModifyEquipToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.ModifyEquipToolStripMenuItem.Text = "修改设备";
             // 
             // DelEquipToolStripMenuItem
             // 
             this.DelEquipToolStripMenuItem.Name = "DelEquipToolStripMenuItem";
-            this.DelEquipToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DelEquipToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.DelEquipToolStripMenuItem.Text = "删除设备";
+            // 
+            // ProofTimeToolStripMenuItem
+            // 
+            this.ProofTimeToolStripMenuItem.Name = "ProofTimeToolStripMenuItem";
+            this.ProofTimeToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.ProofTimeToolStripMenuItem.Text = "校时";
             // 
             // AllExpendToolStripMenuItem
             // 
             this.AllExpendToolStripMenuItem.Name = "AllExpendToolStripMenuItem";
-            this.AllExpendToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.AllExpendToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.AllExpendToolStripMenuItem.Text = "全部展开";
             // 
             // AllCollapseToolStripMenuItem
             // 
             this.AllCollapseToolStripMenuItem.Name = "AllCollapseToolStripMenuItem";
-            this.AllCollapseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.AllCollapseToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.AllCollapseToolStripMenuItem.Text = "全部收起";
             // 
             // TreeViewImageList
@@ -193,20 +207,22 @@
             this.TreeViewImageList.TransparentColor = System.Drawing.Color.Transparent;
             this.TreeViewImageList.Images.SetKeyName(0, "Check.png");
             this.TreeViewImageList.Images.SetKeyName(1, "Cross.png");
+            this.TreeViewImageList.Images.SetKeyName(2, "question.png");
             // 
             // DataReceiveLogGrid
             // 
             this.DataReceiveLogGrid.AllowUserToAddRows = false;
             this.DataReceiveLogGrid.AllowUserToDeleteRows = false;
+            this.DataReceiveLogGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.DataReceiveLogGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataReceiveLogGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataReceiveLogGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DataReceiveLogGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataReceiveLogGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colId,
@@ -219,20 +235,20 @@
             this.colVehPlateColor,
             this.colReachTime,
             this.colVehSpeed});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataReceiveLogGrid.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataReceiveLogGrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.DataReceiveLogGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DataReceiveLogGrid.Location = new System.Drawing.Point(253, 58);
             this.DataReceiveLogGrid.Name = "DataReceiveLogGrid";
             this.DataReceiveLogGrid.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DataReceiveLogGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DataReceiveLogGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DataReceiveLogGrid.RowTemplate.Height = 23;
             this.DataReceiveLogGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataReceiveLogGrid.Size = new System.Drawing.Size(236, 280);
@@ -245,6 +261,7 @@
             this.colId.Name = "colId";
             this.colId.ReadOnly = true;
             this.colId.Visible = false;
+            this.colId.Width = 66;
             // 
             // colImageFullPath
             // 
@@ -252,6 +269,7 @@
             this.colImageFullPath.Name = "colImageFullPath";
             this.colImageFullPath.ReadOnly = true;
             this.colImageFullPath.Visible = false;
+            this.colImageFullPath.Width = 66;
             // 
             // colImageNear
             // 
@@ -259,6 +277,7 @@
             this.colImageNear.Name = "colImageNear";
             this.colImageNear.ReadOnly = true;
             this.colImageNear.Visible = false;
+            this.colImageNear.Width = 66;
             // 
             // colVehiclePlate
             // 
@@ -266,6 +285,7 @@
             this.colVehiclePlate.Name = "colVehiclePlate";
             this.colVehiclePlate.ReadOnly = true;
             this.colVehiclePlate.Visible = false;
+            this.colVehiclePlate.Width = 66;
             // 
             // colBinVehiclePlate
             // 
@@ -273,36 +293,42 @@
             this.colBinVehiclePlate.Name = "colBinVehiclePlate";
             this.colBinVehiclePlate.ReadOnly = true;
             this.colBinVehiclePlate.Visible = false;
+            this.colBinVehiclePlate.Width = 78;
             // 
             // colEquipName
             // 
             this.colEquipName.HeaderText = "设备名称";
             this.colEquipName.Name = "colEquipName";
             this.colEquipName.ReadOnly = true;
+            this.colEquipName.Width = 78;
             // 
             // colVehPlateNo
             // 
             this.colVehPlateNo.HeaderText = "车牌号";
             this.colVehPlateNo.Name = "colVehPlateNo";
             this.colVehPlateNo.ReadOnly = true;
+            this.colVehPlateNo.Width = 66;
             // 
             // colVehPlateColor
             // 
             this.colVehPlateColor.HeaderText = "车牌颜色";
             this.colVehPlateColor.Name = "colVehPlateColor";
             this.colVehPlateColor.ReadOnly = true;
+            this.colVehPlateColor.Width = 78;
             // 
             // colReachTime
             // 
             this.colReachTime.HeaderText = "到达时间";
             this.colReachTime.Name = "colReachTime";
             this.colReachTime.ReadOnly = true;
+            this.colReachTime.Width = 78;
             // 
             // colVehSpeed
             // 
             this.colVehSpeed.HeaderText = "车速";
             this.colVehSpeed.Name = "colVehSpeed";
             this.colVehSpeed.ReadOnly = true;
+            this.colVehSpeed.Width = 54;
             // 
             // txtLog
             // 
@@ -386,12 +412,6 @@
             this.picBinVehiclePlate.TabStop = false;
             this.picBinVehiclePlate.DoubleClick += new System.EventHandler(this.picImage_DoubleClick);
             // 
-            // ModifyEquipToolStripMenuItem
-            // 
-            this.ModifyEquipToolStripMenuItem.Name = "ModifyEquipToolStripMenuItem";
-            this.ModifyEquipToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.ModifyEquipToolStripMenuItem.Text = "修改设备";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -449,6 +469,7 @@
         private System.Windows.Forms.ImageList TreeViewImageList;
         private System.Windows.Forms.Button btnReadHistoryData;
         private System.Windows.Forms.ToolStripMenuItem ModifyEquipToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ProofTimeToolStripMenuItem;
 
     }
 }

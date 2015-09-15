@@ -36,7 +36,7 @@ namespace PathIdentifyEquipDemo
             foreach (T_PathIdentifyEquip equip in rootEquips)
             {
                 TreeNode CurrentRootNode = new TreeNode(equip.EquipName);
-                CurrentRootNode.ImageIndex = 0;
+                CurrentRootNode.ImageIndex = 2;
                 CurrentRootNode.Tag = equip;
                 if (TreeNodeDict.Keys.Contains(equip.Id))
                 {
@@ -51,7 +51,7 @@ namespace PathIdentifyEquipDemo
                 foreach (T_PathIdentifyEquip ce in childEquips)
                 {
                     TreeNode node = new TreeNode(ce.EquipName);
-                    node.ImageIndex = 0;
+                    node.ImageIndex = 2;
                     node.Tag = ce;
 
                     CurrentRootNode.Nodes.Add(node);
@@ -126,6 +126,28 @@ namespace PathIdentifyEquipDemo
                             }
                             InitEquipTree();
                         }
+                    } break;
+                case "ProofTimeToolStripMenuItem":
+                    {
+                        AppendText("设备校时开始");
+                        if (EquipTreeView.SelectedNode != null)
+                        {
+                            T_PathIdentifyEquip selectedEquip = (T_PathIdentifyEquip)EquipTreeView.SelectedNode.Tag;
+                            bool rel = DriverWrapper.ProofTime(selectedEquip.Id);
+                            if (rel)
+                            {
+                                AppendText(string.Format("设备-{0}校时成功。", selectedEquip.EquipName));
+                            }
+                            else
+                            {
+                                AppendText(string.Format("设备-{0}校时失败。", selectedEquip.EquipName));
+                            }
+                        }
+                        else
+                        {
+                            AppendText("设备树上未选择有效的设备");
+                        }
+                        AppendText("设备校时结束");
                     } break;
                 case "AllExpendToolStripMenuItem":
                     {
@@ -362,11 +384,13 @@ namespace PathIdentifyEquipDemo
             {
                 ModifyEquipToolStripMenuItem.Visible = false;
                 DelEquipToolStripMenuItem.Visible = false;
+                ProofTimeToolStripMenuItem.Visible = false;
             }
             else
             {
                 ModifyEquipToolStripMenuItem.Visible = true;
                 DelEquipToolStripMenuItem.Visible = true;
+                ProofTimeToolStripMenuItem.Visible = true;
             }
         }
     }

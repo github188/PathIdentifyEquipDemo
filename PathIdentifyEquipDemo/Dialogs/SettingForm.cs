@@ -74,7 +74,7 @@ namespace PathIdentifyEquipDemo.Dialogs
             }
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                txtImageSavePath.Text = dialog.SelectedPath;
+                txtImageSavePath.Text = dialog.SelectedPath + "\\";
             }
         }
 
