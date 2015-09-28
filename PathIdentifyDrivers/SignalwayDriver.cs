@@ -130,5 +130,10 @@ namespace PathIdentifyDrivers
             get;
             set;
         }
+
+        public bool SetRetransferTime(int equipId, DateTime StartTime, DateTime EndTime)
+        {
+            return innerDriver.SetEquipReTranTime(equipId, StartTime, EndTime);
+        }
     }
 }

@@ -58,6 +58,15 @@ namespace PathIdentifyDrivers
         bool SetEquipTime(int equipId, DateTime currentTime);
 
         /// <summary>
+        /// 设置重传时间
+        /// </summary>
+        /// <param name="equipId"></param>
+        /// <param name="StartTime"></param>
+        /// <param name="EndTime"></param>
+        /// <returns></returns>
+        bool SetRetransferTime(int equipId, DateTime StartTime, DateTime EndTime);
+
+        /// <summary>
         /// 停止驱动程序
         /// </summary>
         /// <returns></returns>

@@ -146,6 +146,12 @@
     <Content Include="HvDevice.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="HWTC_Data.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="HWTC_DOC.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\question.ico" />
     <None Include="Resources\question.png" />
   </ItemGroup>
