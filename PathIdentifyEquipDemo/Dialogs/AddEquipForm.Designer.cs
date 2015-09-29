@@ -31,14 +31,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtEquipName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.cmbParentEquip = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rbRecognizer = new System.Windows.Forms.RadioButton();
             this.rbCamera = new System.Windows.Forms.RadioButton();
+            this.rbRecognizer = new System.Windows.Forms.RadioButton();
             this.txtIP = new System.Windows.Forms.TextBox();
             this.nudPort = new System.Windows.Forms.NumericUpDown();
             this.cmbDriverType = new System.Windows.Forms.ComboBox();
@@ -49,6 +48,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.txtPwd = new System.Windows.Forms.TextBox();
+            this.txtGroupId = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPort)).BeginInit();
             this.SuspendLayout();
@@ -72,19 +72,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(330, 22);
+            this.label2.Location = new System.Drawing.Point(314, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 16);
+            this.label2.Size = new System.Drawing.Size(88, 16);
             this.label2.TabIndex = 2;
-            this.label2.Text = "父设备：";
-            // 
-            // cmbParentEquip
-            // 
-            this.cmbParentEquip.FormattingEnabled = true;
-            this.cmbParentEquip.Location = new System.Drawing.Point(395, 19);
-            this.cmbParentEquip.Name = "cmbParentEquip";
-            this.cmbParentEquip.Size = new System.Drawing.Size(177, 24);
-            this.cmbParentEquip.TabIndex = 3;
+            this.label2.Text = "设备组ID：";
             // 
             // label3
             // 
@@ -133,6 +125,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "设备类型";
             // 
+            // rbCamera
+            // 
+            this.rbCamera.AutoSize = true;
+            this.rbCamera.Location = new System.Drawing.Point(117, 35);
+            this.rbCamera.Name = "rbCamera";
+            this.rbCamera.Size = new System.Drawing.Size(74, 20);
+            this.rbCamera.TabIndex = 1;
+            this.rbCamera.Text = "摄像机";
+            this.rbCamera.UseVisualStyleBackColor = true;
+            // 
             // rbRecognizer
             // 
             this.rbRecognizer.AutoSize = true;
@@ -144,16 +146,6 @@
             this.rbRecognizer.TabStop = true;
             this.rbRecognizer.Text = "识别器";
             this.rbRecognizer.UseVisualStyleBackColor = true;
-            // 
-            // rbCamera
-            // 
-            this.rbCamera.AutoSize = true;
-            this.rbCamera.Location = new System.Drawing.Point(117, 35);
-            this.rbCamera.Name = "rbCamera";
-            this.rbCamera.Size = new System.Drawing.Size(74, 20);
-            this.rbCamera.TabIndex = 1;
-            this.rbCamera.Text = "摄像机";
-            this.rbCamera.UseVisualStyleBackColor = true;
             // 
             // txtIP
             // 
@@ -243,6 +235,13 @@
             this.txtPwd.Size = new System.Drawing.Size(177, 26);
             this.txtPwd.TabIndex = 18;
             // 
+            // txtGroupId
+            // 
+            this.txtGroupId.Location = new System.Drawing.Point(395, 19);
+            this.txtGroupId.Name = "txtGroupId";
+            this.txtGroupId.Size = new System.Drawing.Size(177, 26);
+            this.txtGroupId.TabIndex = 19;
+            // 
             // AddEquipForm
             // 
             this.AcceptButton = this.btnSave;
@@ -250,6 +249,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(625, 299);
+            this.Controls.Add(this.txtGroupId);
             this.Controls.Add(this.txtPwd);
             this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.label8);
@@ -265,13 +265,12 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.cmbParentEquip);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtEquipName);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddEquipForm";
@@ -291,7 +290,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtEquipName;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cmbParentEquip;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -309,5 +307,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.TextBox txtPwd;
+        private System.Windows.Forms.TextBox txtGroupId;
     }
 }

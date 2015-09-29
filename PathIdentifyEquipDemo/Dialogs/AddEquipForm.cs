@@ -34,10 +34,11 @@ namespace PathIdentifyEquipDemo.Dialogs
             ResultEquip = equip;
             this.Text = "修改设备-" + equip.EquipName;
             txtEquipName.Text = equip.EquipName;
-            if (equip.ParentId != -1)
-            {
-                cmbParentEquip.SelectedValue = equip.ParentId;
-            }
+            //if (equip.ParentId != -1)
+            //{
+            //    cmbParentEquip.SelectedValue = equip.ParentId;
+            //}
+            txtGroupId.Text = equip.ParentId.ToString();
 
             txtIP.Text = equip.Ip;
             nudPort.Value = equip.Port ?? 0;
@@ -57,10 +58,10 @@ namespace PathIdentifyEquipDemo.Dialogs
 
         private void InitUI()
         {
-            cmbParentEquip.DataSource = Cache.PathIdEquips.Where(it => it.EquipType == 0 && it.ParentId == -1).ToArray();
-            cmbParentEquip.DisplayMember = "EquipName";
-            cmbParentEquip.ValueMember = "Id";
-            cmbParentEquip.SelectedIndex = -1;
+            //cmbParentEquip.DataSource = Cache.PathIdEquips.Where(it => it.EquipType == 0 && it.ParentId == -1).ToArray();
+            //cmbParentEquip.DisplayMember = "EquipName";
+            //cmbParentEquip.ValueMember = "Id";
+            //cmbParentEquip.SelectedIndex = -1;
 
             cmbDriverType.DataSource = Cache.DataDictCache.Where(it => it.FName == ConstValue.DRIVERTYPE).ToArray();
             cmbDriverType.DisplayMember = "FDesc";
@@ -76,6 +77,24 @@ namespace PathIdentifyEquipDemo.Dialogs
                 MessageBox.Show("设备名称不可为空。");
                 txtEquipName.Focus();
                 return false;
+            }
+
+            if (string.IsNullOrEmpty(txtGroupId.Text))
+            {
+                MessageBox.Show("设备组ID不可为空。");
+                txtGroupId.Focus();
+                return false;
+            }
+            else
+            {
+                int gid;
+                bool convertrel = Int32.TryParse(txtGroupId.Text, out gid);
+                if (convertrel == false)
+                {
+                    MessageBox.Show("设备组ID必须为整数。");
+                    txtGroupId.Focus();
+                    return false;
+                }
             }
 
             if (string.IsNullOrEmpty(txtIP.Text))
@@ -98,14 +117,15 @@ namespace PathIdentifyEquipDemo.Dialogs
                 ResultEquip.LoginPwd = txtPwd.Text;
                 ResultEquip.LoginUserName = txtUserName.Text;
                 ResultEquip.Mile = txtMile.Text;
-                if (string.IsNullOrEmpty(cmbParentEquip.Text))
-                {
-                    ResultEquip.ParentId = -1;
-                }
-                else
-                {
-                    ResultEquip.ParentId = ((T_PathIdentifyEquip)cmbParentEquip.SelectedItem).Id;
-                }
+                ResultEquip.ParentId = Convert.ToInt32(txtGroupId.Text);
+                //if (string.IsNullOrEmpty(cmbParentEquip.Text))
+                //{
+                //    ResultEquip.ParentId = -1;
+                //}
+                //else
+                //{
+                //    ResultEquip.ParentId = ((T_PathIdentifyEquip)cmbParentEquip.SelectedItem).Id;
+                //}
                 ResultEquip.Port = (int)nudPort.Value;
                 ResultEquip.ProtocolId = ((T_DataDict)cmbDriverType.SelectedItem).FValue;
                 DAL_Equip.SaveOrModifyEquip(ResultEquip);
