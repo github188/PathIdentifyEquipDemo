@@ -1,4 +1,5 @@
 ﻿using DAL;
+using DataDict.Dicts;
 using DataDict.Models;
 using HWTC;
 using System;
@@ -27,8 +28,11 @@ namespace PathIdentifyDrivers
 
         private HanWangPathIdDriver innerDriver;
 
+        private List<T_PathIdentifyEquip> CurrentEquipList;
+
         public bool InitDriver(List<T_PathIdentifyEquip> Equips)
         {
+            CurrentEquipList = Equips;
             innerDriver = new HanWangPathIdDriver();
             List<PathIdEquip> innerEquipList = new List<PathIdEquip>();
             foreach (T_PathIdentifyEquip e in Equips)
@@ -41,7 +45,18 @@ namespace PathIdentifyDrivers
                 item.port = e.Port ?? 8088;
                 innerEquipList.Add(item);
             }
-            return innerDriver.InitPathIdentificationDriver(innerEquipList);
+
+            bool setStatusEvent = innerDriver.SetPathIdEquipStatusHandler(OnEquipStatusChanged);
+            bool setReceiveEvent = innerDriver.SetPathIdEquipVehicleInfoHandler(OnVehicleInfoReceived);
+            bool initRel = innerDriver.InitPathIdentificationDriver(innerEquipList);
+            if (setStatusEvent && setReceiveEvent && initRel)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool Connect(int ParentEquipId)
@@ -73,5 +88,54 @@ namespace PathIdentifyDrivers
         {
             return innerDriver.SetEquipReTranTime(equipId, StartTime);
         }
+
+        #region 回调
+
+        private void OnEquipStatusChanged(object sender, PathIdEquipStatusChangedEventArgs args)
+        {
+            if (DeviceStatusNotifyHandler != null)
+            {
+                T_PathIdentifyEquip equip = CurrentEquipList.Where(it => it.Id == args.StatusInfo.equipId).FirstOrDefault();
+                if (equip == null)
+                {
+                    throw new Exception("信路威驱动在回调设备状态时发生错误：未能找到目标设备,EQUIPID=" + args.StatusInfo.equipId.ToString());
+                }
+                DeviceStatus statusInfo = new DeviceStatus();
+                statusInfo.Device = equip;
+                statusInfo.GatherTime = args.StatusInfo.currentDateTime;
+                statusInfo.Status = args.StatusInfo.status;
+                statusInfo.StatusDesc = args.StatusInfo.statusDes;
+                DeviceStatusNotifyHandler.Invoke(this, statusInfo);
+            }
+        }
+
+        private void OnVehicleInfoReceived(object sender, PathIdEquipVehicleInfoChangedEventArgs args)
+        {
+            if (VehicleInfoReceiveHandler != null)
+            {
+                T_PathIdentifyEquip equip = CurrentEquipList.Where(it => it.Id == args.VehicleInfo.equipId).FirstOrDefault();
+                if (equip == null)
+                {
+                    throw new Exception("信路威驱动在回调车辆通行数据时发生错误：未能找到目标设备,EQUIPID=" + args.VehicleInfo.equipId.ToString());
+                }
+                VehicleInfoReceiveEventArgs receiveInfo = new VehicleInfoReceiveEventArgs();
+                receiveInfo.CloseShotPhoto = args.VehicleInfo.imageNear;
+                receiveInfo.Device = equip;
+                receiveInfo.PanoramaPhoto = args.VehicleInfo.imageAll;
+                receiveInfo.ReachTime = args.VehicleInfo.reachTime;
+                receiveInfo.VehicleLength = args.VehicleInfo.vehicleLength;
+                receiveInfo.VehiclePlateBinPhoto = args.VehicleInfo.imageBin;
+                if (VehiclePlateColorDict.NameColorDict.Keys.Contains(args.VehicleInfo.vehicleColor))
+                {
+                    receiveInfo.VehiclePlateColor = args.VehicleInfo.vehicleColor;
+                }
+                receiveInfo.VehiclePlateNo = args.VehicleInfo.vehicleNo;
+                receiveInfo.VehiclePlatePhoto = args.VehicleInfo.imagePlate;
+                receiveInfo.VehicleSpeed = args.VehicleInfo.vehicleSpeed;
+                VehicleInfoReceiveHandler.Invoke(this, receiveInfo);
+            }
+        }
+
+        #endregion 回调
     }
 }
