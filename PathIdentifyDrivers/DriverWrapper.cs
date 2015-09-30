@@ -53,7 +53,9 @@ namespace PathIdentifyDrivers
                 switch (pid)
                 {
                     case 1:
-                        { } break;
+                        {
+                            driver = new HanvonDriver();
+                        } break;
                     case 2:
                         {
                             driver = new SignalwayDriver();
@@ -175,7 +177,7 @@ namespace PathIdentifyDrivers
             data.ReachTime = arg.ReachTime;
             data.VehicleLength = arg.VehicleLength;
             data.VehicleSpeed = arg.VehicleSpeed;
-            data.VehPlateColor = arg.VehiclePlateColor;
+            data.VehPlateColor = string.IsNullOrEmpty(arg.VehiclePlateColor) ? "未知" : arg.VehiclePlateColor;
             data.VehPlateNo = arg.VehiclePlateNo;
             DAL_ReceiveData.SaveReceiveData(data);
             arg.DbData = data;
@@ -197,6 +199,21 @@ namespace PathIdentifyDrivers
             else
             {
                 throw new Exception(string.Format("校时时未能发现正确的驱动类型。EquipId={0},ProtocolId={1}", equipId, protocolId));
+            }
+        }
+
+        public static bool SetRetransData(int equipId, DateTime startTime, DateTime endTime)
+        {
+            T_PathIdentifyEquip equip = Cache.PathIdEquips.Where(it => it.Id == equipId).FirstOrDefault();
+            int protocolId = equip.ProtocolId;
+
+            if (DriverDict.Keys.Contains(protocolId))
+            {
+                return DriverDict[protocolId].SetRetransferTime(equip.Id, startTime, endTime);
+            }
+            else
+            {
+                throw new Exception(string.Format("设置重传时未能发现正确的驱动类型。EquipId={0},ProtocolId={1}", equipId, protocolId));
             }
         }
 

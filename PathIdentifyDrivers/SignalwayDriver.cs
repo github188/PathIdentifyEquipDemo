@@ -49,9 +49,14 @@ namespace PathIdentifyDrivers
 
         private void OnEquipStatusChanged(object sender, PathIdEquipStatusChangedEventArgs args)
         {
+            T_PathIdentifyEquip equip = CurrentEquipList.Where(it => it.Id == args.equipId).FirstOrDefault();
+
+            if ((uint)args.status == DEVICE_TYPEINFO2.CONN_STATUS_RECVDONE)
+            {
+                innerDriver.Connect(equip.ParentId);
+            }
             if (DeviceStatusNotifyHandler != null)
             {
-                T_PathIdentifyEquip equip = CurrentEquipList.Where(it => it.Id == args.equipId).FirstOrDefault();
                 if (equip == null)
                 {
                     throw new Exception("信路威驱动在回调设备状态时发生错误：未能找到目标设备,EQUIPID=" + args.equipId.ToString());
@@ -133,6 +138,8 @@ namespace PathIdentifyDrivers
 
         public bool SetRetransferTime(int equipId, DateTime StartTime, DateTime EndTime)
         {
+            T_PathIdentifyEquip equip = CurrentEquipList.Where(it => it.Id == equipId).FirstOrDefault();
+            innerDriver.DisConnect(equip.ParentId);
             return innerDriver.SetEquipReTranTime(equipId, StartTime, EndTime);
         }
     }

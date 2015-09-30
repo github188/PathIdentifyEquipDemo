@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MainTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.MainControlPanel = new System.Windows.Forms.Panel();
             this.btnReadHistoryData = new System.Windows.Forms.Button();
@@ -43,6 +43,7 @@
             this.AddEquipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ModifyEquipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DelEquipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RetransDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ProofTimeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AllExpendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AllCollapseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -157,48 +158,55 @@
             this.AddEquipToolStripMenuItem,
             this.ModifyEquipToolStripMenuItem,
             this.DelEquipToolStripMenuItem,
+            this.RetransDataToolStripMenuItem,
             this.ProofTimeToolStripMenuItem,
             this.AllExpendToolStripMenuItem,
             this.AllCollapseToolStripMenuItem});
             this.EquipTreeContextMenuStrip.Name = "EquipTreeContextMenuStrip";
-            this.EquipTreeContextMenuStrip.Size = new System.Drawing.Size(125, 136);
+            this.EquipTreeContextMenuStrip.Size = new System.Drawing.Size(134, 158);
             this.EquipTreeContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.EquipTreeContextMenuStrip_Opening);
             this.EquipTreeContextMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.EquipTreeContextMenuStrip_ItemClicked);
             // 
             // AddEquipToolStripMenuItem
             // 
             this.AddEquipToolStripMenuItem.Name = "AddEquipToolStripMenuItem";
-            this.AddEquipToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.AddEquipToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.AddEquipToolStripMenuItem.Text = "添加设备";
             // 
             // ModifyEquipToolStripMenuItem
             // 
             this.ModifyEquipToolStripMenuItem.Name = "ModifyEquipToolStripMenuItem";
-            this.ModifyEquipToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.ModifyEquipToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.ModifyEquipToolStripMenuItem.Text = "修改设备";
             // 
             // DelEquipToolStripMenuItem
             // 
             this.DelEquipToolStripMenuItem.Name = "DelEquipToolStripMenuItem";
-            this.DelEquipToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.DelEquipToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.DelEquipToolStripMenuItem.Text = "删除设备";
+            // 
+            // RetransDataToolStripMenuItem
+            // 
+            this.RetransDataToolStripMenuItem.Name = "RetransDataToolStripMenuItem";
+            this.RetransDataToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.RetransDataToolStripMenuItem.Text = "重传数据...";
             // 
             // ProofTimeToolStripMenuItem
             // 
             this.ProofTimeToolStripMenuItem.Name = "ProofTimeToolStripMenuItem";
-            this.ProofTimeToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.ProofTimeToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.ProofTimeToolStripMenuItem.Text = "校时";
             // 
             // AllExpendToolStripMenuItem
             // 
             this.AllExpendToolStripMenuItem.Name = "AllExpendToolStripMenuItem";
-            this.AllExpendToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.AllExpendToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.AllExpendToolStripMenuItem.Text = "全部展开";
             // 
             // AllCollapseToolStripMenuItem
             // 
             this.AllCollapseToolStripMenuItem.Name = "AllCollapseToolStripMenuItem";
-            this.AllCollapseToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.AllCollapseToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.AllCollapseToolStripMenuItem.Text = "全部收起";
             // 
             // TreeViewImageList
@@ -215,14 +223,14 @@
             this.DataReceiveLogGrid.AllowUserToDeleteRows = false;
             this.DataReceiveLogGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.DataReceiveLogGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataReceiveLogGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataReceiveLogGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.DataReceiveLogGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataReceiveLogGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colId,
@@ -235,20 +243,20 @@
             this.colVehPlateColor,
             this.colReachTime,
             this.colVehSpeed});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataReceiveLogGrid.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataReceiveLogGrid.DefaultCellStyle = dataGridViewCellStyle5;
             this.DataReceiveLogGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DataReceiveLogGrid.Location = new System.Drawing.Point(253, 58);
             this.DataReceiveLogGrid.Name = "DataReceiveLogGrid";
             this.DataReceiveLogGrid.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DataReceiveLogGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DataReceiveLogGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DataReceiveLogGrid.RowTemplate.Height = 23;
             this.DataReceiveLogGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataReceiveLogGrid.Size = new System.Drawing.Size(236, 280);
@@ -470,6 +478,7 @@
         private System.Windows.Forms.Button btnReadHistoryData;
         private System.Windows.Forms.ToolStripMenuItem ModifyEquipToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ProofTimeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem RetransDataToolStripMenuItem;
 
     }
 }

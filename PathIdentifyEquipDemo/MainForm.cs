@@ -32,8 +32,8 @@ namespace PathIdentifyEquipDemo
         private void InitEquipTree()
         {
             EquipTreeView.Nodes.Clear();
-            T_PathIdentifyEquip[] rootEquips = Cache.PathIdEquips.Where(it => it.ParentId == -1).ToArray();
-            foreach (T_PathIdentifyEquip equip in rootEquips)
+            //  T_PathIdentifyEquip[] rootEquips = Cache.PathIdEquips.Where(it => it.ParentId == -1).ToArray();
+            foreach (T_PathIdentifyEquip equip in Cache.PathIdEquips)
             {
                 TreeNode CurrentRootNode = new TreeNode(equip.EquipName);
                 CurrentRootNode.ImageIndex = 2;
@@ -149,6 +149,38 @@ namespace PathIdentifyEquipDemo
                         }
                         AppendText("设备校时结束");
                     } break;
+                case "RetransDataToolStripMenuItem":
+                    {
+                        AppendText("设置重传...");
+                        if (EquipTreeView.SelectedNode != null)
+                        {
+                            T_PathIdentifyEquip selectedEquip = (T_PathIdentifyEquip)EquipTreeView.SelectedNode.Tag;
+                            RetransDataForm form = new RetransDataForm();
+                            if (form.ShowDialog() == DialogResult.OK)
+                            {
+                                bool rel = DriverWrapper.SetRetransData(selectedEquip.Id, form.StartTime, form.EndTime);
+                                if (rel)
+                                {
+                                    AppendText(string.Format("设备-{0}设置重传成功。StartTime:{1}-EndTime:{2}"
+                                        , selectedEquip.EquipName, form.StartTime, form.EndTime));
+                                }
+                                else
+                                {
+                                    AppendText(string.Format("设备-{0}设置重传失败。StartTime:{1}-EndTime:{2}"
+                                        , selectedEquip.EquipName, form.StartTime, form.EndTime));
+                                }
+                            }
+                            else
+                            {
+                                AppendText("设置重传取消");
+                            }
+                        }
+                        else
+                        {
+                            AppendText("设备树上未选择有效的设备");
+                        }
+                        AppendText("设置重传完成");
+                    } break;
                 case "AllExpendToolStripMenuItem":
                     {
                         EquipTreeView.ExpandAll();
@@ -242,11 +274,17 @@ namespace PathIdentifyEquipDemo
             {
                 if (args.Status == 0)
                 {
-                    TreeNodeDict[args.Device.Id].ImageIndex = 0;
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        TreeNodeDict[args.Device.Id].ImageIndex = 0;
+                    });
                 }
                 else
                 {
-                    TreeNodeDict[args.Device.Id].ImageIndex = 1;
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        TreeNodeDict[args.Device.Id].ImageIndex = 1;
+                    });
                 }
             }
         }
@@ -280,7 +318,7 @@ namespace PathIdentifyEquipDemo
             {
                 this.Invoke((MethodInvoker)delegate
                 {
-                    if (txtLog.TextLength > 200)
+                    if (txtLog.Lines.Length > 200)
                     {
                         txtLog.Clear();
                     }
@@ -289,7 +327,7 @@ namespace PathIdentifyEquipDemo
             }
             else
             {
-                if (txtLog.TextLength > 200)
+                if (txtLog.Lines.Length > 200)
                 {
                     txtLog.Clear();
                 }
@@ -385,12 +423,14 @@ namespace PathIdentifyEquipDemo
                 ModifyEquipToolStripMenuItem.Visible = false;
                 DelEquipToolStripMenuItem.Visible = false;
                 ProofTimeToolStripMenuItem.Visible = false;
+                RetransDataToolStripMenuItem.Visible = false;
             }
             else
             {
                 ModifyEquipToolStripMenuItem.Visible = true;
                 DelEquipToolStripMenuItem.Visible = true;
                 ProofTimeToolStripMenuItem.Visible = true;
+                RetransDataToolStripMenuItem.Visible = true;
             }
         }
     }

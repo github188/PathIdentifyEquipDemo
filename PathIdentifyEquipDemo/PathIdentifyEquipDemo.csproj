@@ -74,6 +74,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Dialogs\RetransDataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\RetransDataForm.Designer.cs">
+      <DependentUpon>RetransDataForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Dialogs\AddEquipForm.resx">
       <DependentUpon>AddEquipForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -96,6 +102,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Dialogs\RetransDataForm.resx">
+      <DependentUpon>RetransDataForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

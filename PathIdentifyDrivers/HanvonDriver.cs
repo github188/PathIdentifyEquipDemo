@@ -98,7 +98,7 @@ namespace PathIdentifyDrivers
                 T_PathIdentifyEquip equip = CurrentEquipList.Where(it => it.Id == args.StatusInfo.equipId).FirstOrDefault();
                 if (equip == null)
                 {
-                    throw new Exception("信路威驱动在回调设备状态时发生错误：未能找到目标设备,EQUIPID=" + args.StatusInfo.equipId.ToString());
+                    throw new Exception("汉王驱动在回调设备状态时发生错误：未能找到目标设备,EQUIPID=" + args.StatusInfo.equipId.ToString());
                 }
                 DeviceStatus statusInfo = new DeviceStatus();
                 statusInfo.Device = equip;
@@ -116,7 +116,7 @@ namespace PathIdentifyDrivers
                 T_PathIdentifyEquip equip = CurrentEquipList.Where(it => it.Id == args.VehicleInfo.equipId).FirstOrDefault();
                 if (equip == null)
                 {
-                    throw new Exception("信路威驱动在回调车辆通行数据时发生错误：未能找到目标设备,EQUIPID=" + args.VehicleInfo.equipId.ToString());
+                    throw new Exception("汉王驱动在回调车辆通行数据时发生错误：未能找到目标设备,EQUIPID=" + args.VehicleInfo.equipId.ToString());
                 }
                 VehicleInfoReceiveEventArgs receiveInfo = new VehicleInfoReceiveEventArgs();
                 receiveInfo.CloseShotPhoto = args.VehicleInfo.imageNear;
