@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathIdentifyEquipDemo", "PathIdentifyEquipDemo\PathIdentifyEquipDemo.csproj", "{0CAEB2C1-13A8-498D-B830-255E5A54D03E}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataDict", "DataDict\DataDict.csproj", "{7541B0E8-34C0-4E55-9D34-DA2EABD778AF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Util", "Util\Util.csproj", "{8C2FC61D-7D80-4222-811E-CEA74293CA37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferenceFiles", "ReferenceFiles\ReferenceFiles.csproj", "{1F281BA1-60FD-4028-91B9-EDEF717A5AA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{8C2FC61D-7D80-4222-811E-CEA74293CA37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C2FC61D-7D80-4222-811E-CEA74293CA37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C2FC61D-7D80-4222-811E-CEA74293CA37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F281BA1-60FD-4028-91B9-EDEF717A5AA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F281BA1-60FD-4028-91B9-EDEF717A5AA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F281BA1-60FD-4028-91B9-EDEF717A5AA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F281BA1-60FD-4028-91B9-EDEF717A5AA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

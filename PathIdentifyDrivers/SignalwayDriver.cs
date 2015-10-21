@@ -51,7 +51,7 @@ namespace PathIdentifyDrivers
         {
             T_PathIdentifyEquip equip = CurrentEquipList.Where(it => it.Id == args.equipId).FirstOrDefault();
 
-            if ((uint)args.status == DEVICE_TYPEINFO2.CONN_STATUS_RECVDONE)
+            if (args.status == 5)
             {
                 innerDriver.Connect(equip.ParentId);
             }
