@@ -62,6 +62,7 @@ namespace PathIdentifyDrivers
                         } break;
                     case 3:
                         {
+                            driver = new HitDriver();
                         } break;
                     default:
                         {
