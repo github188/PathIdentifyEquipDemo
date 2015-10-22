@@ -152,17 +152,22 @@
     <None Include="Resources\Cross.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="HvDevice.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="HWTC_Data.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="HWTC_DOC.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="Resources\question.ico" />
     <None Include="Resources\question.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\ReferenceFiles\Hanvon\HWTC_Data.dll">
+      <Link>HWTC_Data.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\ReferenceFiles\Hanvon\HWTC_DOC.dll">
+      <Link>HWTC_DOC.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\ReferenceFiles\Singalway\HvDevice.dll">
+      <Link>HvDevice.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

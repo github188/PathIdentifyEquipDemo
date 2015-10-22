@@ -86,7 +86,7 @@ namespace PathIdentifyDrivers
 
         public bool SetRetransferTime(int equipId, DateTime StartTime, DateTime EndTime)
         {
-            return innerDriver.SetEquipReTranTime(equipId, StartTime);
+            return innerDriver.SetEquipReTranTime(equipId, StartTime, EndTime);
         }
 
         #region 回调

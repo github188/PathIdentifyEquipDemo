@@ -42,12 +42,24 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Hanvon\HanWangPathIdDriver.dll" />
-    <Content Include="Hanvon\HWTC_Data.dll" />
-    <Content Include="Hanvon\HWTC_DOC.dll" />
-    <Content Include="Singalway\HvDevice.dll" />
-    <Content Include="Singalway\SignalwayPathIdDriver.dll" />
-    <Content Include="Singalway\Utility.dll" />
+    <Content Include="Hanvon\HanWangPathIdDriver.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Hanvon\HWTC_Data.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Hanvon\HWTC_DOC.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Singalway\HvDevice.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Singalway\SignalwayPathIdDriver.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Singalway\Utility.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
