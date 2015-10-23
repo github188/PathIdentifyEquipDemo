@@ -164,6 +164,18 @@
       <Link>HWTC_DOC.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="..\ReferenceFiles\HIT\FouthHITDLL.dll">
+      <Link>FouthHITDLL.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\ReferenceFiles\HIT\HCNetSDK.dll">
+      <Link>HCNetSDK.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\ReferenceFiles\HIT\HitSysPath.dll">
+      <Link>HitSysPath.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="..\ReferenceFiles\Singalway\HvDevice.dll">
       <Link>HvDevice.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

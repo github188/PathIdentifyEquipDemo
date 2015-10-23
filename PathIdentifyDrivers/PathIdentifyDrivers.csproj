@@ -34,9 +34,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ReferenceFiles\Hanvon\HanWangPathIdDriver.dll</HintPath>
     </Reference>
-    <Reference Include="SignalwayPathIdDriver, Version=1.0.0.6, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ReferenceDriver\Singalway\SignalwayPathIdDriver.dll</HintPath>
+    <Reference Include="HitSysPathIdDriver">
+      <HintPath>..\ReferenceFiles\HIT\HitSysPathIdDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="SignalwayPathIdDriver">
+      <HintPath>..\ReferenceFiles\Singalway\SignalwayPathIdDriver.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,9 +48,8 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Utility, Version=1.0.0.6, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ReferenceDriver\Singalway\Utility.dll</HintPath>
+    <Reference Include="Utility">
+      <HintPath>..\ReferenceFiles\Singalway\Utility.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
