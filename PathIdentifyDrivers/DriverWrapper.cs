@@ -223,7 +223,9 @@ namespace PathIdentifyDrivers
             int protocolId = Cache.PathIdEquips.Where(it => it.Id == equipId).Select(it => it.ProtocolId).FirstOrDefault();
             if (DriverDict.Keys.Contains(protocolId))
             {
-                return DriverDict[protocolId].SetEquipTime(equipId, DateTime.Now);
+                return DriverDict[protocolId].GetConnectStatus(equipId);
+
+                //return DriverDict[protocolId].SetEquipTime(equipId, DateTime.Now);
             }
             else
             {

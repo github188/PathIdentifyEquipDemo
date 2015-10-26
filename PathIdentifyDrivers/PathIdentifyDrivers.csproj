@@ -34,7 +34,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ReferenceFiles\Hanvon\HanWangPathIdDriver.dll</HintPath>
     </Reference>
-    <Reference Include="HitSysPathIdDriver">
+    <Reference Include="HitSysPathIdDriver, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ReferenceFiles\HIT\HitSysPathIdDriver.dll</HintPath>
     </Reference>
     <Reference Include="SignalwayPathIdDriver">

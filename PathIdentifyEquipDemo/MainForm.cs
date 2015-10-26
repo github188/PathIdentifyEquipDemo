@@ -214,13 +214,13 @@ namespace PathIdentifyEquipDemo
                 {
                     btnInitDriver.Text = "已启动";
                     btnInitDriver.Enabled = false;
-                    AppendText("初始化驱动完成，开始创建连接...");
-                    T_PathIdentifyEquip[] parentEquips = Cache.PathIdEquips.Where(it => it.ParentId == -1).ToArray();
-                    foreach (T_PathIdentifyEquip equip in parentEquips)
+                    AppendText("初始化驱动完成");
+                    //T_PathIdentifyEquip[] parentEquips = Cache.PathIdEquips.Where(it => it.ParentId == -1).ToArray();
+                    foreach (T_PathIdentifyEquip equip in Cache.PathIdEquips)
                     {
                         try
                         {
-                            DriverWrapper.Connect(equip.ParentId);
+                            //DriverWrapper.Connect(equip.ParentId);
                             bool connRel = DriverWrapper.GetConnectStatus(equip.Id);
                             if (connRel)
                             {
@@ -403,7 +403,7 @@ namespace PathIdentifyEquipDemo
                         row.Cells["colImageNear"].Value = item.ImageNearPath;
                         row.Cells["colVehiclePlate"].Value = item.ImagePlateNoPath;
                         row.Cells["colBinVehiclePlate"].Value = item.ImageBinPlateNoPath;
-                        row.Cells["colEquipName"].Value = equip.EquipName;
+                        row.Cells["colEquipName"].Value = equip == null ? "未知设备" : equip.EquipName;
                         row.Cells["colVehPlateNo"].Value = item.VehPlateNo;
                         row.Cells["colVehPlateColor"].Value = item.VehPlateColor;
                         row.Cells["colReachTime"].Value = item.ReachTime.ToString();

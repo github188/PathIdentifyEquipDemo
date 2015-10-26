@@ -57,9 +57,6 @@
     <Content Include="HIT\HCNetSDK.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="HIT\HitSysPath.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="HIT\HitSysPathIdDriver.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

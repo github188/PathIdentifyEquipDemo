@@ -1,20 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using DAL;
+﻿using DAL;
 using DataDict.Dicts;
 using DataDict.Models;
 using HitSysPathIdDriver;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
 
 namespace PathIdentifyDrivers
 {
     /// <summary>
     /// 哈工大抓拍设备驱动
     /// </summary>
-    public class HitDriver:PathIdentifyDriverInterface
+    public class HitDriver : PathIdentifyDriverInterface
     {
-       // private PlateInfo innerDriver;
+        // private PlateInfo innerDriver;
         private List<T_PathIdentifyEquip> CurrentEquipList;
 
         public bool InitDriver(List<T_PathIdentifyEquip> Equips)
@@ -30,11 +31,18 @@ namespace PathIdentifyDrivers
                 item.ip = e.Ip;
                 item.parentId = e.ParentId;
                 item.port = e.Port ?? 8088;
+                item.usercode = e.LoginUserName;
+                item.password = e.LoginPwd;
                 innerEquipList.Add(item);
             }
             bool setStatusEvent = PlateInfo.SetPathIdEquipStatusHandler(OnEquipStatusChanged);
             bool setReceiveEvent = PlateInfo.SetPathIdEquipVehicleInfoHandler(OnVehicleInfoReceived);
             bool initRel = PlateInfo.InitPathIdentificationDriver(innerEquipList);
+            //foreach (var item in innerEquipList)
+            //{
+            //    bool connrel = PlateInfo.Connect(item.parentId);
+            //    Debug.Print(connrel.ToString());
+            //}
             if (setStatusEvent && setReceiveEvent && initRel)
             {
                 return true;
