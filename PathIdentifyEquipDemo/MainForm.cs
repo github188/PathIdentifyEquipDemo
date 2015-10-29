@@ -372,7 +372,14 @@ namespace PathIdentifyEquipDemo
                 if (DataReceiveLogGrid.Rows[e.RowIndex].Cells["colBinVehiclePlate"].Value != null &&
                     !string.IsNullOrEmpty(DataReceiveLogGrid.Rows[e.RowIndex].Cells["colBinVehiclePlate"].Value.ToString()))
                 {
-                    picBinVehiclePlate.Image = Image.FromFile(DataReceiveLogGrid.Rows[e.RowIndex].Cells["colBinVehiclePlate"].Value.ToString());
+                    try
+                    {
+                        picBinVehiclePlate.Image = Image.FromFile(DataReceiveLogGrid.Rows[e.RowIndex].Cells["colBinVehiclePlate"].Value.ToString());
+                    }
+                    catch (Exception ex)
+                    {
+                        picBinVehiclePlate.Image = Properties.Resources.NonImage_Small;
+                    }// Bitmap i=Bitmap.
                 }
                 else
                 {

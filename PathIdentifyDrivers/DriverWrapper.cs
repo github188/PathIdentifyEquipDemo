@@ -139,7 +139,8 @@ namespace PathIdentifyDrivers
             {
                 Directory.CreateDirectory(path);
             }
-            Guid nameid = Guid.NewGuid();
+            string nameid = string.Format("{0}{1}", string.IsNullOrEmpty(arg.VehiclePlateNo) ? "无牌" : arg.VehiclePlateNo,
+            arg.ReachTime.ToString("HHmmss"));
 
             T_ReceiveData data = new T_ReceiveData();
             data.EquipId = arg.Device.Id;
@@ -148,27 +149,27 @@ namespace PathIdentifyDrivers
 
             if (arg.PanoramaPhoto != null && arg.PanoramaPhoto.Length > 0)
             {
-                string PanoramaPhotoPath = path + nameid.ToString() + "ImageAll.jpg";
+                string PanoramaPhotoPath = path + nameid + "_All.jpg";
                 FileIOUtil.SaveFileByByteArray(PanoramaPhotoPath, arg.PanoramaPhoto);
                 data.ImageAllPath = PanoramaPhotoPath;
             }
             if (arg.CloseShotPhoto != null && arg.CloseShotPhoto.Length > 0)
             {
-                string CloseShotPhotoPath = path + nameid.ToString() + "ImageNear.jpg";
+                string CloseShotPhotoPath = path + nameid + "_Near.jpg";
                 FileIOUtil.SaveFileByByteArray(CloseShotPhotoPath, arg.CloseShotPhoto);
                 data.ImageNearPath = CloseShotPhotoPath;
             }
 
             if (arg.VehiclePlatePhoto != null && arg.VehiclePlatePhoto.Length > 0)
             {
-                string VehiclePlatePhotoPath = path + nameid.ToString() + "VehiclePlatePhoto.jpg";
+                string VehiclePlatePhotoPath = path + nameid + "_VehiclePlate.jpg";
                 FileIOUtil.SaveFileByByteArray(VehiclePlatePhotoPath, arg.VehiclePlatePhoto);
                 data.ImagePlateNoPath = VehiclePlatePhotoPath;
             }
 
             if (arg.VehiclePlateBinPhoto != null && arg.VehiclePlateBinPhoto.Length > 0)
             {
-                string BinVehiclePlatePhotoPath = path + nameid.ToString() + "BinVehiclePlatePhoto.jpg";
+                string BinVehiclePlatePhotoPath = path + nameid + "_Bin.jpg";
                 FileIOUtil.SaveFileByByteArray(BinVehiclePlatePhotoPath, arg.VehiclePlateBinPhoto);
                 data.ImageBinPlateNoPath = BinVehiclePlatePhotoPath;
             }
