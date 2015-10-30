@@ -60,6 +60,9 @@
     <Content Include="HIT\HitSysPathIdDriver.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="PathIdEquipDB.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Singalway\HvDevice.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
